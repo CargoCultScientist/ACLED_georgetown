@@ -1,10 +1,13 @@
 '''
 I can't write a function to save my life but this is my best work to date.. bascially I wanted to 
-make doc-term matrix(s) where we have terms used against documents or vocab banks to showcase term 
-frequency and attempt a tfidf weighted score. I only did two for protests and battle event type. I 
-might have some useful code in here for whatever our final product will end up being. 
-I have to redo file paths but the code fuctions and generates the two different df views.
+make doc-term matrix(s) where we have terms used vs. documents or vocab banks to showcase term 
+frequency and attempt a tfidf weighted score across all terms(minus stopwords). I only did two for 
+protests and battle event type. I might have some useful code in here for whatever our final product 
+will end up being.
 
+I actually have no idea how to make this so someone can download the code and run it since 
+my file writing and manipulation is so convoluted and specific to my machine.. However it 
+works more or less to produce the desired dataframes 
 
 '''
 import pandas as pd
@@ -32,7 +35,7 @@ name_data = "/Users/admin/desktop/doc1final.csv"
 df1 = pd.read_csv(name_data, sep= ',', header=0)
 df2 = df1.drop(df1.loc[:, 'data_id':'source_scale'].columns, axis = 1)
 df3 = df2.drop(df2.loc[:, 'fatalities':'iso3'].columns, axis = 1)
-df3.to_csv(r'/Users/admin/desktop/protestdocfinal.txt', header=None, index=None, sep='\t', mode='a')
+df3.to_csv(r'/Users/admin/desktop/protestdocfinal.txt', header=None, index=True, sep='\t', mode='a')
 
 name_data = "/Users/admin/desktop/2019-05-01-2021-05-29-Ethiopia copy.csv"
 df = pd.read_csv(name_data, sep= ',', header=0)
