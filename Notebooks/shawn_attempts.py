@@ -3,7 +3,7 @@ I can't write a function to save my life but this is my best work to date.. basc
 make doc-term matrix(s) where we have terms used against documents or vocab banks to showcase term 
 frequency and attempt a tfidf weighted score. I only did two for protests and battle event type. I 
 might have some useful code in here for whatever our final product will end up being. 
-I have to redo file paths but the code fuctions are generates the two different df views.
+I have to redo file paths but the code fuctions and generates the two different df views.
 
 
 '''
