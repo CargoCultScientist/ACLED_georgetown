@@ -6,7 +6,6 @@ your desktop if you want to see kinda the cleaned datasets being created. Not 10
 sure where to go from here, if this is remotely right. If it is, it can easily be scaled 
 to do all topics, not just protests and battles...
 """
-
 import pandas as pd
 import re
 import csv
@@ -15,11 +14,13 @@ from string import digits
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+
 '''
 import data
 '''
 name_data = "/Users/admin/desktop/2019-05-01-2021-05-29-Ethiopia copy.csv"
 df = pd.read_csv(name_data, sep= ',', header=0)
+
 '''
 clean data
 '''
@@ -29,6 +30,10 @@ df3 = df2.drop(df2.loc[:, 'fatalities':'iso3'].columns, axis = 1)
 protester_text = list(df3['notes'])
 stopwords = set(stopwords.words('english'))
 data = protester_text
+
+'''
+removing stopwords
+'''
 def remove_stopwords(data):
     output_array=[]
     for sentence in data:
@@ -42,6 +47,9 @@ def remove_stopwords(data):
 output_protests_pre = remove_stopwords(data)
 # print(output_protests)
 
+'''
+removing numbers (dates) -- still need to remove months...
+'''
 def remove_num(list):
     pattern = '[0-9]'
     list = [re.sub(pattern, '', i) for i in list]
@@ -60,6 +68,9 @@ data = battle_text
 output_battles_pre = remove_stopwords(data)
 output_battles = remove_num(output_battles_pre)
 
+'''
+creating documents
+'''
 with open('protestinfo.txt', 'w') as file:
     for item in output_protests:
         file.write("%s\n" % item)
@@ -78,7 +89,6 @@ battle_txt = str(battle_doc)
 '''
 populate corpus(s):
 '''
-
 corpus_total = [protest_txt, battle_txt]
 # corpus_protest = file
 # corpus_battle = file1
@@ -144,7 +154,9 @@ print(df2)
 df1.to_csv("/Users/admin/desktop/tfidf_takealook.csv")
 df2.to_csv("/Users/admin/desktop/doc_term_takealook.csv")
 
-
+'''
+finding max values
+'''
 column1 = df1["protest_doc"]
 max_value1 = column1.max()
 print('max tfidf value - protest vocab:')
